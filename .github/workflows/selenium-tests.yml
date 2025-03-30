@@ -47,6 +47,7 @@ jobs:
           sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
           sudo chmod +x /usr/local/bin/chromedriver
           chromedriver --version
+          if [ -z "$CHROMEDRIVER_VERSION" ]; then
 
       - name: Run Selenium TestNG Tests
         run: mvn test -Dsurefire.suiteXmlFiles=pom.xml

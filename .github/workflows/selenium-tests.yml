@@ -30,6 +30,9 @@ jobs:
             ${{ runner.os }}-maven-
       - name: Install Chrome
         run: sudo apt-get install -y google-chrome-stable
-
+      - name: Clear Maven Cache
+        run: mvn clean
+      - name: Run Tests with Maven
+        run: mvn clean test
       - name: Run Selenium TestNG Tests
-        run: mvn test -Dsurefire.suiteXmlFiles=pom.xml
+        run: mvn test -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml

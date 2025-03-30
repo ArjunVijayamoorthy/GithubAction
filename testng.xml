@@ -1,0 +1,8 @@
+
+<suite name="Selenium Test Suite">
+    <test name="Google Title Test">
+        <classes>
+            <class name="example.GoogleTest"/>
+        </classes>
+    </test>
+</suite>

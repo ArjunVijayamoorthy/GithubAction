@@ -1,5 +1,4 @@
 name: Run Selenium TestNG Tests
-
 on:
   push:
     branches:

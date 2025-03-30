@@ -35,17 +35,18 @@ jobs:
           sudo apt-get install -y google-chrome-stable
 
       - name: Install ChromeDriver
-        run: CHROME_VERSION=$(google-chrome --version | grep -oP '(?<=Google Chrome )\d+')
+        run: |
+          CHROME_VERSION=$(google-chrome --version | grep -oP '(?<=Google Chrome )\d+')
           CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-            if [ -z "$CHROMEDRIVER_VERSION" ]; then
+          if [ -z "$CHROMEDRIVER_VERSION" ]; then
             CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE")
-            fi
-            echo "Installing ChromeDriver version $CHROMEDRIVER_VERSION"
-            wget -N "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip" -P ~/
-            unzip ~/chromedriver_linux64.zip -d ~/
-            sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
-            sudo chmod +x /usr/local/bin/chromedriver
-            chromedriver --version
+          fi
+          echo "Installing ChromeDriver version $CHROMEDRIVER_VERSION"
+          wget -N "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip" -P ~/
+          unzip ~/chromedriver_linux64.zip -d ~/
+          sudo mv -f ~/chromedriver /usr/local/bin/chromedriver
+          sudo chmod +x /usr/local/bin/chromedriver
+          chromedriver --version
 
       - name: Run Selenium TestNG Tests
         run: mvn test -Dsurefire.suiteXmlFiles=pom.xml

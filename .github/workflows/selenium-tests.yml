@@ -45,4 +45,4 @@ jobs:
           chromedriver --version
 
       - name: Run Selenium TestNG Tests
-        run: mvn test
+        run: mvn test -Dsurefire.suiteXmlFiles=pom.xml
